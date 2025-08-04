@@ -57,13 +57,19 @@ async def show_random_emojis(message):
 OWNER_ID = 5840594311 # Replace with the actual owner's user ID
 
 # List of sudo users (initially empty or pre-populated)
-SUDO_USERS = [5840594311,7856557198,6303334633]
+SUDO_USERS = [5840594311]
 
-AUTH_CHANNEL = -1002572301679
+# ✅ Multiple AUTH CHANNELS allowed
+AUTH_CHANNELS = [-1002605113558,-1002663510614]  # Add more channel IDs here
 
 # Function to check if a user is authorized
 def is_authorized(user_id: int) -> bool:
-    return user_id == OWNER_ID or user_id in SUDO_USERS or user_id == AUTH_CHANNEL
+    return (
+        user_id == OWNER_ID
+        or user_id in SUDO_USERS
+        or user_id in AUTH_CHANNELS  # ✅ Checks if user_id matches any channel ID
+    )
+
 
 bot = Client(
     "bot",
@@ -626,7 +632,8 @@ async def upload(bot: Client, m: Message):
              #url = f"https://player.muftukmall.site/?id={id}"
             elif "/master.mpd" in url or "d1d34p8vz63oiq" in url or "sec1.pw.live" in url:
              id =  url.split("/")[-2]
-             url = f"https://anonymouspwplayer-b99f57957198.herokuapp.com/pw?url={url}?token={raw_text4}"
+             #url = f"https://anonymouspwplayer-b99f57957198.herokuapp.com/pw?url={url}?token={raw_text4}"
+             url = f"https://anonymouspwplayerr-f996115ea61a.herokuapp.com/pw?url={url}&token={raw_text4}"
              #url = f"https://madxabhi-pw.onrender.com/{id}/master.m3u8?token={raw_text4}"
             #elif '/master.mpd' in url:
              #id =  url.split("/")[-2]
